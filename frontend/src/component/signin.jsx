@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./signin.scss";
-
 import axios from "axios";
 
-function SignIn() {
+
+import { useNavigate } from "react-router-dom";
+
+
+
+const SignIn = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -24,11 +29,15 @@ function SignIn() {
         "http://127.0.0.1:8000/auth/jwt/create/",
         formData
       );
-      console.log(response.data);
-      localStorage.setItem("token", response.data.access);
-      window.location.href = "/";
+      console.log("Response data:", response.data); // Log the response data
+      
+       localStorage.setItem("access_token", response.data.access);
+       localStorage.setItem("refresh_token", response.data.refresh);
+       navigate('/')
+
+      
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
     }
   };
 
@@ -56,6 +65,7 @@ function SignIn() {
       </form>
     </div>
   );
-}
+};
 
 export default SignIn;
+

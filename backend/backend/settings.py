@@ -149,6 +149,7 @@ SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
 }
 
+
 DJOSER = { 
      'USER_CREATE_PASSWORD_RETYPE': True,      
      'SERIALIZERS': {},

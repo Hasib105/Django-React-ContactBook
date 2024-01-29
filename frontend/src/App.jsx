@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import "./App.scss";
+import Navbar from "./component/navbar";
+import SignIn from "./component/signin";
+import SignUp from "./component/signup";
+import Dashboard from "./component/dashboard";
 
-import "./App.css";
-import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/hello-world/")
-      .then((response) => {
-        setMessage(response.data.message);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div>
-      
-      <p>{message}</p>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

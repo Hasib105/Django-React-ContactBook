@@ -1,0 +1,30 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #FF512F;
+  color: #fff;
+  font-family: Arial, sans-serif; /* Example font-family */
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left a,
+  &__right a {
+    margin-left: 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+    font-weight: bold; /* Example font-weight */
+    font-size: 16px; /* Example font-size */
+  }
+
+  &__right a:hover {
+    color: #b3b3b3; /* Change text color on hover */
+  }
+}

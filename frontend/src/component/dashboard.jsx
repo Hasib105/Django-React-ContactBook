@@ -1,5 +1,6 @@
 import React from "react";
 import "./dashboard.scss";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const users = [
@@ -11,7 +12,9 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
-      <button className="add-user-btn">Add New User</button>
+      <button className="add-user-btn">
+        <Link to="/new-contact">Add New User</Link>
+      </button>
       <table>
         <thead>
           <tr>

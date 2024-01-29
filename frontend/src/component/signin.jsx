@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./signin.scss";
-
 import axios from "axios";
 
-function SignIn() {
+
+import { useNavigate } from "react-router-dom";
+
+
+
+const SignIn = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -25,8 +30,10 @@ function SignIn() {
         formData
       );
       console.log(response.data);
-      localStorage.setItem("token", response.data.access);
-      window.location.href = "/";
+      
+      localStorage.setItem("token", response.data.token);
+      
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -56,6 +63,13 @@ function SignIn() {
       </form>
     </div>
   );
-}
+};
 
 export default SignIn;
+
+// const logoutUser = (e) => {
+//   e.preventDefault();
+//   localStorage.removeItem("authTokens");
+//   authTokens = null;
+//   user = null;
+// };

@@ -14,7 +14,7 @@ function Dashboard() {
 
         const response = await axios.get("http://127.0.0.1:8000/contacts/", {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `JWT ${accessToken}`,
           },
         });
         setUsers(response.data);

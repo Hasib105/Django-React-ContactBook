@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 
 const Navbar = () => {
-  const  isAuthenticated  = useContext(AuthContext)
+  const  isAuthenticated  = false
   
    const handleLogout = () => {
      localStorage.removeItem("access_token");

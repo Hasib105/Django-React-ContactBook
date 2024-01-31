@@ -6,17 +6,16 @@ const NewContact = () => {
   const [image, setImage] = useState("");
   const [division, setDivision] = useState("");
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [divisionOptions, setDivisionOptions] = useState([]);
+  const [number, setNumber] = useState("");
 
   useEffect(() => {
-   
+    // Fetch data from the backend and set the input fields
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/divisions/", {
+      const response = await axios.get("http://127.0.0.1:8000/contacts/", {
         headers: {
           Authorization: `JWT ${localStorage.getItem("access_token")}`,
         },
@@ -25,12 +24,9 @@ const NewContact = () => {
       // Set the input fields with the fetched data
       const contact = response.data;
       setName(contact.name);
-      setPhoneNumber(contact.phoneNumber);
+      setNumber(contact.number);
       setDivision(contact.division);
       setImage(contact.image);
-      const divisions = response.data.map((division) => division.name);
-      setDivisionOptions(divisions);
- 
     } catch (error) {
       console.error(error);
     }
@@ -59,33 +55,33 @@ const NewContact = () => {
     setName(e.target.value);
   };
 
-  const handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
+  const handleNumberChange = (e) => {
+    setNumber(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-   
+    // Create form data object
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("phoneNumber", phoneNumber);
+    formData.append("number", number);
     if (image) {
       formData.append("image", image);
     }
     formData.append("division", division);
 
     try {
-  
+      // Make API call to the backend
       await axios.post("http://127.0.0.1:8000/contacts/", formData, {
         headers: {
           Authorization: `JWT ${localStorage.getItem("access_token")}`,
         },
       });
 
-    
+      // Reset form fields after successful submission
       setName("");
-      setPhoneNumber("");
+      setNumber("");
       setImage("");
       setDivision("");
     } catch (error) {
@@ -105,13 +101,13 @@ const NewContact = () => {
           value={name}
           onChange={handleNameChange}
         />
-        <label htmlFor="phoneNumber">Phone Number:</label>
+        <label htmlFor="number">Phone Number:</label>
         <input
           type="text"
           id="number"
           name="number"
           value={number}
-          onChange={handlePhoneNumberChange}
+          onChange={handleNumberChange}
         />
         <label htmlFor="image">Image:</label>
         <input
@@ -136,12 +132,14 @@ const NewContact = () => {
           onChange={handleDivisionChange}
         >
           <option value="">Select Division</option>
-          {divisionOptions &&
-            divisionOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
+          <option value="barisal">barisal</option>
+          <option value="dhaka">dhaka</option>
+          <option value="chittagong">chittagong</option>
+          <option value="mymensingh">mymensingh</option>
+          <option value="rajshahi">rajshahi</option>
+          <option value="rangpur">Rangpur</option>
+          <option value="khulna">khulna</option>
+          <option value="sylhet">Sylhet</option>
         </select>
         <button type="submit">Submit</button>
       </form>

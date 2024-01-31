@@ -26,6 +26,29 @@ function Dashboard() {
     fetchCurrentUser();
   }, []);
 
+  const deleteUser = async (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+
+    if (confirmed) {
+      try {
+        const accessToken = localStorage.getItem("access_token");
+
+        await axios.delete(`http://127.0.0.1:8000/contacts/${id}`, {
+          headers: {
+            Authorization: `JWT ${accessToken}`,
+          },
+        });
+
+        // If the deletion is successful, update the users state by filtering out the deleted user
+        setUsers(users.filter((user) => user.id !== id));
+      } catch (error) {
+        setError("An error occurred while deleting the user.");
+      }
+    }
+  };
+
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
@@ -64,13 +87,8 @@ function Dashboard() {
                       Edit
                     </Link>
                   </button>
-                  <button className="delete-btn">
-                    <Link
-                      to={`/delete-contact/${user.id}`}
-                      className="delete-link"
-                    >
-                      Delete
-                    </Link>
+                  <button className="delete-btn" onClick={() => deleteUser(user.id)}>
+                    Delete
                   </button>
                 </td>
               </tr>

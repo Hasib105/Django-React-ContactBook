@@ -17,6 +17,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__left">
         <NavLink exact to="/" activeClassName="active">
+          
           Home
         </NavLink>
       </div>

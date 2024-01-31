@@ -69,12 +69,3 @@ const SignIn = () => {
 
 export default SignIn;
 
-<<<<<<< HEAD
-=======
-// const logoutUser = (e) => {
-//   e.preventDefault();
-//   localStorage.removeItem("authTokens");
-//   authTokens = null;
-//   user = null;
-// };
->>>>>>> bdf3a01dda87e96fc47d52bee0900515f42a7ba6

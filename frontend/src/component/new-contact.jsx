@@ -108,9 +108,9 @@ const NewContact = () => {
         <label htmlFor="phoneNumber">Phone Number:</label>
         <input
           type="text"
-          id="phoneNumber"
-          name="phoneNumber"
-          value={phoneNumber}
+          id="number"
+          name="number"
+          value={number}
           onChange={handlePhoneNumberChange}
         />
         <label htmlFor="image">Image:</label>

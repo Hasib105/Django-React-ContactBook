@@ -89,62 +89,45 @@ const NewContact = () => {
     }
   };
 
-  return (
-    <div className="add-new-user">
-      <h2>Add New Contact</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={handleNameChange}
-        />
-        <label htmlFor="number">Phone Number:</label>
-        <input
-          type="text"
-          id="number"
-          name="number"
-          value={number}
-          onChange={handleNumberChange}
-        />
-        <label htmlFor="image">Image:</label>
-        <input
-          type="file"
-          id="image"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        {image && (
-          <img
-            src={image}
-            alt="Selected"
-            style={{ width: "100px", height: "100px" }}
-          />
-        )}
-        <label htmlFor="division">Division:</label>
-        <select
-          id="division"
-          name="division"
-          value={division}
-          onChange={handleDivisionChange}
-        >
-          <option value="">Select Division</option>
-          <option value="barisal">barisal</option>
-          <option value="dhaka">dhaka</option>
-          <option value="chittagong">chittagong</option>
-          <option value="mymensingh">mymensingh</option>
-          <option value="rajshahi">rajshahi</option>
-          <option value="rangpur">Rangpur</option>
-          <option value="khulna">khulna</option>
-          <option value="sylhet">Sylhet</option>
-        </select>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
+   return (
+     <div className="add-new-user">
+       <h2>Add New Contact</h2>
+       <form onSubmit={handleSubmit}>
+         <input
+           type="text"
+           placeholder="Name"
+           value={name}
+           onChange={handleNameChange}
+         />
+         <input
+           type="text"
+           placeholder="Phone Number"
+           value={number}
+           onChange={handleNumberChange}
+         />
+         <input type="file" accept="image/*" onChange={handleImageChange} />
+         {image && (
+           <img
+             src={image}
+             alt="Selected"
+             style={{ width: "100px", height: "100px" }}
+           />
+         )}
+         <select value={division} onChange={handleDivisionChange}>
+           <option value="">Select Division</option>
+           <option value="barisal">barisal</option>
+           <option value="dhaka">dhaka</option>
+           <option value="chittagong">chittagong</option>
+           <option value="mymensingh">mymensingh</option>
+           <option value="rajshahi">rajshahi</option>
+           <option value="rangpur">Rangpur</option>
+           <option value="khulna">khulna</option>
+           <option value="sylhet">Sylhet</option>
+         </select>
+         <button type="submit">Submit</button>
+       </form>
+     </div>
+   );
 };
 
 export default NewContact;

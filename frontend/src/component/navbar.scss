@@ -1,30 +1,65 @@
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #FF512F;
-  color: #fff;
-  font-family: Arial, sans-serif; /* Example font-family */
+  background: transparent;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 66.6667%;
+  margin: 20px auto 0; 
+  border-radius: 10px; 
+}
 
-  &__left,
-  &__right {
-    display: flex;
-    align-items: center;
-  }
+.navbar__left {
+  display: flex;
+  align-items: center;
+}
 
-  &__left a,
-  &__right a {
-    margin-left: 1rem;
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
-    font-weight: bold; /* Example font-weight */
-    font-size: 16px; /* Example font-size */
-  }
+.navbar__left a {
+  color: #333333;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
 
-  &__right a:hover {
-    color: #b3b3b3; /* Change text color on hover */
-  }
+.navbar__left a.active {
+  font-weight: bold;
+}
+
+.navbar__left a:hover {
+  color: rgba(51, 51, 51, 0.8);
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__right span,
+.navbar__right a {
+  color: #333333;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.navbar__right a.active {
+  font-weight: bold;
+}
+
+.navbar__right a:hover {
+  color: rgba(51, 51, 51, 0.8);
+}
+
+.navbar__right button {
+  padding: 5px 10px;
+  background-color: transparent;
+  color: #333333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar__right button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

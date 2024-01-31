@@ -1,56 +1,91 @@
 .dashboard {
-  margin: 20px;
+  margin: 20px auto; 
+  padding: 20px; 
   max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
 
-  h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.add-user-btn {
+  a {
+      color: #fff; 
+      text-decoration: none; 
+    }
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #83C0C1;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #5cc0c2;
+  }
+}
+
+table {
+  width: 100%;
+  margin: 0 auto; /* Align the table in the middle */
+  border-collapse: collapse;
+  border-radius: 10px; /* Add rounded corners */
+  overflow: hidden; /* Hide any content that goes beyond the rounded corners */
+
+  th,
+  td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #333333; 
+  }
+
+  th {
+    background-color: #83C0C1; 
+    color: #fff;
     font-weight: bold;
   }
 
-  .add-user-btn {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #FC6736;
+  .edit-btn {
+    a {
+      color: #fff; 
+      text-decoration: none; 
+    }
+    padding: 5px 10px;
+    background-color: #527853; 
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
+    margin-right: 5px;
 
     &:hover {
-      background-color: #FF512F;
+      background-color: #264b27; 
     }
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
+  .delete-btn {
+    a {
+      color: #fff; 
+      text-decoration: none; 
     }
+    padding: 5px 10px;
+    background-color: #f44336; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
 
-    th {
-      background-color: #FC6736;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .edit-btn, .delete-btn {
-      padding: 5px 10px;
-      background-color: #FC6736;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-      margin-right: 5px;
-
-      &:hover {
-        background-color: #FF512F;
-      }
+    &:hover {
+      background-color: #d32f2f; 
     }
   }
 }

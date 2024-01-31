@@ -43,7 +43,7 @@ const SignIn = () => {
 
   return (
     <div className="login-page">
-      <h1>Login</h1>
+      <h1>Sign In</h1>
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -61,7 +61,7 @@ const SignIn = () => {
           onChange={handleChange}
         />
 
-        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
       </form>
     </div>
   );

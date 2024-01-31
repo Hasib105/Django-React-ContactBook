@@ -12,6 +12,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import NewContact from "./component/new-contact";
+import EditContact from "./component/edit-contact";
 
 function App() {
   const isAuthenticated = !!localStorage.getItem("access_token");
@@ -21,12 +22,12 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-        
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/new-contact" element={<NewContact />} />
-
+          <Route path="/edit-contact/:id" element={<EditContact/>} />
           
+
           <Route
             path="/"
             element={

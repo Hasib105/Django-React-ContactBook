@@ -59,8 +59,19 @@ function Dashboard() {
                 </td>
                 <td>{user.division || "N/A"}</td>
                 <td>
-                  <button className="edit-btn">Edit</button>
-                  <button className="delete-btn">Delete</button>
+                  <button className="edit-btn">
+                    <Link to={`/edit-contact/${user.id}`} className="edit-link">
+                      Edit
+                    </Link>
+                  </button>
+                  <button className="delete-btn">
+                    <Link
+                      to={`/delete-contact/${user.id}`}
+                      className="delete-link"
+                    >
+                      Delete
+                    </Link>
+                  </button>
                 </td>
               </tr>
             ))}

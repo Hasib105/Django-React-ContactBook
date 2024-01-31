@@ -1,37 +1,35 @@
-.add-new-user {
+.edit-contact {
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
   border-radius: 4px;
-  
   color: #333333;
 }
 
-.add-new-user h2 {
+.edit-contact h2 {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  color: #333333; 
+  color: #333333;
 }
 
-.add-new-user form {
+.edit-contact form {
   display: flex;
   flex-direction: column;
 }
 
-.add-new-user input,
-.add-new-user select {
+.edit-contact input,
+.edit-contact select {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  color: #333333; 
+  color: #333333;
 }
 
-
-.add-new-user button {
+.edit-contact button {
   padding: 10px 20px;
   background-color: #83C0C1;
   color: #fff;
@@ -41,6 +39,6 @@
   cursor: pointer;
 }
 
-.add-new-user button:hover {
+.edit-contact button:hover {
   background-color: #608e8f;
 }

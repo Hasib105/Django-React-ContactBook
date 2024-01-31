@@ -29,6 +29,7 @@ const SignIn = () => {
         "http://127.0.0.1:8000/auth/jwt/create/",
         formData
       );
+<<<<<<< HEAD
       console.log("Response data:", response.data); // Log the response data
       
        localStorage.setItem("access_token", response.data.access);
@@ -36,6 +37,13 @@ const SignIn = () => {
        navigate('/')
 
       
+=======
+      console.log(response.data);
+      
+      localStorage.setItem("token", response.data.token);
+      
+      navigate("/");
+>>>>>>> bdf3a01dda87e96fc47d52bee0900515f42a7ba6
     } catch (error) {
       console.error("Error:", error);
     }
@@ -69,3 +77,12 @@ const SignIn = () => {
 
 export default SignIn;
 
+<<<<<<< HEAD
+=======
+// const logoutUser = (e) => {
+//   e.preventDefault();
+//   localStorage.removeItem("authTokens");
+//   authTokens = null;
+//   user = null;
+// };
+>>>>>>> bdf3a01dda87e96fc47d52bee0900515f42a7ba6

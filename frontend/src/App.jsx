@@ -14,7 +14,11 @@ import {
 import NewContact from "./component/new-contact";
 
 function App() {
+<<<<<<< HEAD
   const isAuthenticated = !!localStorage.getItem("access_token");
+=======
+  const isAuthenticated = !!localStorage.getItem("token");
+>>>>>>> bdf3a01dda87e96fc47d52bee0900515f42a7ba6
 
   return (
     <div>

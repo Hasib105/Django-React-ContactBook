@@ -10,19 +10,11 @@ function Dashboard() {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-<<<<<<< HEAD
         const accessToken = localStorage.getItem("access_token"); 
 
         const response = await axios.get("http://127.0.0.1:8000/contacts/", {
           headers: {
             Authorization: `JWT ${accessToken}`,
-=======
-        const accessToken = localStorage.getItem("accessToken"); // Assuming you store the access token in localStorage
-
-        const response = await axios.get("http://127.0.0.1:8000/contacts/", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
->>>>>>> bdf3a01dda87e96fc47d52bee0900515f42a7ba6
           },
         });
         setUsers(response.data);

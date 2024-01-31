@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom"; // Import useParams
 import "./edit-contact.scss";
 
-const EditContact = ({ contactId }) => {
+const EditContact = () => {
+  // Remove contactId from props
+  const { contactId } = useParams(); // Get contactId from URL params
+
   const [image, setImage] = useState("");
   const [division, setDivision] = useState("");
   const [name, setName] = useState("");
@@ -16,7 +20,7 @@ const EditContact = ({ contactId }) => {
   const fetchContactData = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/contacts/${contactId}`,
+        `http://127.0.0.1:8000/contacts/${contactId}/`,
         {
           headers: {
             Authorization: `JWT ${localStorage.getItem("access_token")}`,
@@ -76,12 +80,13 @@ const EditContact = ({ contactId }) => {
 
     try {
       // Make API call to update the contact
-      await axios.patch(
-        `http://127.0.0.1:8000/contacts/${contactId}`,
+      await axios.put(
+        `http://127.0.0.1:8000/contacts/${contactId}/`,
         formData,
         {
           headers: {
             Authorization: `JWT ${localStorage.getItem("access_token")}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );

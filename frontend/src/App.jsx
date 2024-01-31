@@ -25,7 +25,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/new-contact" element={<NewContact />} />
-          <Route path="/edit-contact/:id" element={<EditContact/>} />
+          <Route path="/edit-contact/:contactId" element={<EditContact />} />
           
 
           <Route

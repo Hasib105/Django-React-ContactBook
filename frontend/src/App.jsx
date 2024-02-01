@@ -1,21 +1,21 @@
-import React from "react";
-import "./App.scss";
-import Navbar from "./component/navbar";
-import SignIn from "./component/signin";
-import SignUp from "./component/signup";
-import Dashboard from "./component/dashboard";
-
+import React, { useContext } from "react";
+import './App.scss'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
+import Navbar from "./component/navbar";
+import SignIn from "./component/signin";
+import SignUp from "./component/signup";
+import Dashboard from "./component/dashboard";
 import NewContact from "./component/new-contact";
 import EditContact from "./component/edit-contact";
 
+
 function App() {
-  const isAuthenticated = !!localStorage.getItem("access_token");
+  const isAuthenticated = localStorage.getItem("access_token") !== null;
 
   return (
     <div>
@@ -24,10 +24,26 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/new-contact" element={<NewContact />} />
-          <Route path="/edit-contact/:contactId" element={<EditContact />} />
-          
-
+          <Route
+            path="/new-contact"
+            element={
+              isAuthenticated ? (
+                <NewContact />
+              ) : (
+                <Navigate to="/signin" replace />
+              )
+            }
+          />
+          <Route
+            path="/edit-contact/:contactId"
+            element={
+              isAuthenticated ? (
+                <EditContact />
+              ) : (
+                <Navigate to="/signin" replace />
+              )
+            }
+          />
           <Route
             path="/"
             element={
@@ -43,5 +59,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

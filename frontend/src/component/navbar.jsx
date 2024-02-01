@@ -1,40 +1,64 @@
-import React, { useContext } from "react";
-import { NavLink, redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import "./navbar.scss";
-import { AuthContext } from "../contexts/AuthContext";
-
 
 const Navbar = () => {
-  const  isAuthenticated  = false
-  
-   const handleLogout = () => {
-     localStorage.removeItem("access_token");
-     return redirect('/signin')
-   };
+  const navigate = useNavigate();
+  const [user, setUser] = useState("");
+  const isAuthenticated = localStorage.getItem("access_token") !== null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    navigate("/signin");
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        const response = await axios.get(
+          "http://127.0.0.1:8000/auth/users/me/",
+          {
+            headers: {
+              Authorization: `JWT ${token}`,
+            },
+          }
+        );
+        setUser(response.data.username);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <nav className="navbar">
       <div className="navbar__left">
-        <NavLink exact to="/" activeClassName="active">
-          
+        <Link exact to="/" activeClassName="active">
           Home
-        </NavLink>
+        </Link>
       </div>
       <div className="navbar__right">
         {isAuthenticated ? (
           <>
-            <span>Welcome, [User Name]</span>
-            <button onClick={handleLogout}>Logout</button>
+            <span>Welcome, {user}</span>
+            <button onClick={handleLogout} className="logout_button">
+              Logout
+            </button>
           </>
         ) : (
           <>
-            <NavLink to="/signup" activeClassName="active">
+            <Link to="/signup" activeClassName="active">
               Signup
-            </NavLink>
-            <NavLink to="/signin" activeClassName="active">
+            </Link>
+            <Link to="/signin" activeClassName="active">
               Signin
-            </NavLink>
+            </Link>
           </>
         )}
       </div>

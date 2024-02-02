@@ -16,6 +16,7 @@ import EditContact from "./component/edit-contact";
 
 function App() {
   const isAuthenticated = localStorage.getItem("access_token") !== null;
+  console.log(isAuthenticated)
 
   return (
     <div>

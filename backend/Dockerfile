@@ -1,13 +1,12 @@
-FROM python:3.8
+FROM python:3.8-slim
 
-ENV PYTHONUNBUFFERED 1
+RUN pip install --upgrade pip
 
-RUN mkdir /app
-WORKDIR /app
-
-COPY requirements.txt /app/
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . /app/
+COPY . /app
+WORKDIR /app
 
-CMD ["gunicorn", "-c", "gunicorn.conf.py", "backend.wsgi:application"]
+COPY ./entrypoint.sh .
+ENTRYPOINT ["sh", "/app/entrypoint.sh"]

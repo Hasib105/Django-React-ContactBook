@@ -3,7 +3,7 @@ import axios from "axios";
 import "./new-contact.scss";
 
 const NewContact = () => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [division, setDivision] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -34,17 +34,7 @@ const NewContact = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      setImage("");
-    }
+    setImage(file);
   };
 
   const handleDivisionChange = (e) => {
@@ -62,72 +52,70 @@ const NewContact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create form data object
     const formData = new FormData();
     formData.append("name", name);
     formData.append("number", number);
+    formData.append("division", division);
     if (image) {
       formData.append("image", image);
     }
-    formData.append("division", division);
 
     try {
-      // Make API call to the backend
       await axios.post("http://127.0.0.1:8000/contacts/", formData, {
         headers: {
           Authorization: `JWT ${localStorage.getItem("access_token")}`,
+          "Content-Type": "multipart/form-data",
         },
       });
 
-      // Reset form fields after successful submission
       setName("");
       setNumber("");
-      setImage("");
+      setImage(null);
       setDivision("");
     } catch (error) {
       console.error(error);
     }
   };
 
-   return (
-     <div className="add-new-user">
-       <h2>Add New Contact</h2>
-       <form onSubmit={handleSubmit}>
-         <input
-           type="text"
-           placeholder="Name"
-           value={name}
-           onChange={handleNameChange}
-         />
-         <input
-           type="text"
-           placeholder="Phone Number"
-           value={number}
-           onChange={handleNumberChange}
-         />
-         <input type="file" accept="image/*" onChange={handleImageChange} />
-         {image && (
-           <img
-             src={image}
-             alt="Selected"
-             style={{ width: "100px", height: "100px" }}
-           />
-         )}
-         <select value={division} onChange={handleDivisionChange}>
-           <option value="">Select Division</option>
-           <option value="barisal">barisal</option>
-           <option value="dhaka">dhaka</option>
-           <option value="chittagong">chittagong</option>
-           <option value="mymensingh">mymensingh</option>
-           <option value="rajshahi">rajshahi</option>
-           <option value="rangpur">Rangpur</option>
-           <option value="khulna">khulna</option>
-           <option value="sylhet">Sylhet</option>
-         </select>
-         <button type="submit">Submit</button>
-       </form>
-     </div>
-   );
+  return (
+    <div className="add-new-user">
+      <h2>Add New Contact</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={number}
+          onChange={handleNumberChange}
+        />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        {image && (
+          <img
+            src={URL.createObjectURL(image)}
+            alt="Selected"
+            style={{ width: "100px", height: "100px" }}
+          />
+        )}
+        <select value={division} onChange={handleDivisionChange}>
+          <option value="">Select Division</option>
+          <option value="barisal">Barisal</option>
+          <option value="dhaka">Dhaka</option>
+          <option value="chittagong">Chittagong</option>
+          <option value="mymensingh">Mymensingh</option>
+          <option value="rajshahi">Rajshahi</option>
+          <option value="rangpur">Rangpur</option>
+          <option value="khulna">Khulna</option>
+          <option value="sylhet">Sylhet</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 };
 
 export default NewContact;

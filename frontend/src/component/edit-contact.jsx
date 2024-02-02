@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // Import useParams
+import { useParams } from "react-router-dom";
 import "./edit-contact.scss";
 
 const EditContact = () => {
-  // Remove contactId from props
-  const { contactId } = useParams(); // Get contactId from URL params
+  const { contactId } = useParams();
 
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [division, setDivision] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
   useEffect(() => {
-    // Fetch contact data from the backend and set the input fields
     fetchContactData();
   }, [contactId]);
 
@@ -28,7 +26,6 @@ const EditContact = () => {
         }
       );
 
-      // Set the input fields with the fetched data
       const contact = response.data;
       setName(contact.name);
       setNumber(contact.number);
@@ -41,17 +38,7 @@ const EditContact = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      setImage("");
-    }
+    setImage(file);
   };
 
   const handleDivisionChange = (e) => {
@@ -69,17 +56,15 @@ const EditContact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create form data object
     const formData = new FormData();
     formData.append("name", name);
     formData.append("number", number);
+    formData.append("division", division);
     if (image) {
       formData.append("image", image);
     }
-    formData.append("division", division);
 
     try {
-      // Make API call to update the contact
       await axios.put(
         `http://127.0.0.1:8000/contacts/${contactId}/`,
         formData,
@@ -91,10 +76,9 @@ const EditContact = () => {
         }
       );
 
-      // Reset form fields after successful submission
       setName("");
       setNumber("");
-      setImage("");
+      setImage(null);
       setDivision("");
     } catch (error) {
       console.error(error);
@@ -120,20 +104,20 @@ const EditContact = () => {
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {image && (
           <img
-            src={image}
+            src={URL.createObjectURL(image)}
             alt="Selected"
             style={{ width: "100px", height: "100px" }}
           />
         )}
         <select value={division} onChange={handleDivisionChange}>
           <option value="">Select Division</option>
-          <option value="barisal">barisal</option>
-          <option value="dhaka">dhaka</option>
-          <option value="chittagong">chittagong</option>
-          <option value="mymensingh">mymensingh</option>
-          <option value="rajshahi">rajshahi</option>
+          <option value="barisal">Barisal</option>
+          <option value="dhaka">Dhaka</option>
+          <option value="chittagong">Chittagong</option>
+          <option value="mymensingh">Mymensingh</option>
+          <option value="rajshahi">Rajshahi</option>
           <option value="rangpur">Rangpur</option>
-          <option value="khulna">khulna</option>
+          <option value="khulna">Khulna</option>
           <option value="sylhet">Sylhet</option>
         </select>
         <button type="submit">Submit</button>

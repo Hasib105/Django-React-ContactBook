@@ -75,7 +75,12 @@ function Dashboard() {
                 <td>{user.number}</td>
                 <td>
                   {user.image ? (
-                    <img src={user.image} alt="User" className="user-image" />
+                    <img
+                      src={user.image}
+                      alt="User"
+                      className="user-image"
+                      style={{ width: "100px", height: "80px" }}
+                    />
                   ) : (
                     <span>No Image</span>
                   )}
@@ -87,7 +92,10 @@ function Dashboard() {
                       Edit
                     </Link>
                   </button>
-                  <button className="delete-btn" onClick={() => deleteUser(user.id)}>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteUser(user.id)}
+                  >
                     Delete
                   </button>
                 </td>

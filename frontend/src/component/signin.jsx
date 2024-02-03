@@ -32,7 +32,7 @@ const SignIn = () => {
       console.log("Response data:", response.data); // Log the response data
       
        localStorage.setItem("access_token", response.data.access);
-       localStorage.setItem("refresh_token", response.data.refresh);
+       
        navigate('/')
 
       

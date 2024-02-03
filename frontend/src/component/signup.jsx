@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './signup.scss'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ function SignUp() {
     password: "",
     re_password: "",
   });
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -29,6 +32,7 @@ function SignUp() {
     } catch (error) {
       console.error(error);
     }
+    navigate('/signin')
   };
 
   return (

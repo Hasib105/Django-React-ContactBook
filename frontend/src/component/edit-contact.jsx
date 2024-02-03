@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./edit-contact.scss";
 
 const EditContact = () => {
@@ -10,6 +10,7 @@ const EditContact = () => {
   const [division, setDivision] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchContactData();
@@ -80,6 +81,7 @@ const EditContact = () => {
       setNumber("");
       setImage(null);
       setDivision("");
+      navigate('/')
     } catch (error) {
       console.error(error);
     }

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./new-contact.scss";
+import { useNavigate } from "react-router-dom";
+
 
 const NewContact = () => {
   const [image, setImage] = useState(null);
   const [division, setDivision] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Fetch data from the backend and set the input fields
@@ -72,6 +75,7 @@ const NewContact = () => {
       setNumber("");
       setImage(null);
       setDivision("");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
